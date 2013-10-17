@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "xvfb"
+exit 0

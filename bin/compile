@@ -1,0 +1,25 @@
+#!/bin/sh
+
+set -e
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+
+# config
+# http://orm-buildpack.s3.amazonaws.com/Xvfb.tar.gz
+
+# Buildpack URL
+FILE_NAME=Xvfb.tar.gz
+BUILDPACK_XVFB_PACKAGE=http://orm-buildpack.s3.amazonaws.com/${FILE_NAME}
+
+mkdir -p $CACHE_DIR
+if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
+  echo "-----> Fetching XVFB binaries at ${BUILDPACK_XVFB_PACKAGE}"
+  curl $BUILDPACK_XVFB_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
+fi
+
+echo "-----> Extracting XVFB binaries to ${BUILD_DIR}/vendor/xvfb"
+mkdir -p $CACHE_DIR/$ARCHIVE_NAME
+mkdir -p $BUILD_DIR/vendor
+tar jxf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
+mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vendor/xvfb
