@@ -9,8 +9,8 @@ CACHE_DIR=$2
 # http://orm-buildpack.s3.amazonaws.com/Xvfb.tar.gz
 
 # Buildpack URL
-FILE_NAME=Xvfb.tar.gz
-BUILDPACK_XVFB_PACKAGE=http://orm-buildpack.s3.amazonaws.com/${FILE_NAME}
+FILE_NAME=xvfb.tar.bz2
+BUILDPACK_XVFB_PACKAGE=https://s3.amazonaws.com/heroku.buildpacks/${FILE_NAME}
 
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
